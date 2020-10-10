@@ -63,6 +63,16 @@ var shuru = "导师：张三\
 function messege() {
     var mdata = document.getElementById("rk").value;
     // var mdata=shuru;
+    var  n = document.getElementById( 'tree' ).childNodes.length;   
+    for  (  var  i = n-1; i >= 0; i--) {   
+        document.getElementById( 'tree' ).removeChild(   
+        document.getElementById( 'tree' ).childNodes[i]);   
+    }  
+    var  n = document.getElementById( 'tree' ).childNodes.length;   
+    for  (  var  i = 0; i < n; i++) {   
+        document.getElementById( 'tree' ).removeChild(   
+        document.getElementById( 'tree' ).childNodes[i]);   
+    }  
     var trees = mdata.split("\n\n\n"); //分割树
     var position = '';
     var name = '';
@@ -143,6 +153,7 @@ function messege() {
     }
     
     Name={};
+    json=[];
 }
 function init1(tn) {
     var margin = [20, 120, 20, 120],
