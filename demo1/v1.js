@@ -62,6 +62,7 @@ var shuru = "导师：张三\
 
 function messege() {
     var mdata = document.getElementById("rk").value;
+    // var mdata=shuru;
     var trees = mdata.split("\n\n\n"); //分割树
     var position = '';
     var name = '';
@@ -137,14 +138,17 @@ function messege() {
             }
         }
     }
-    init1();
+    for(var i=0;i<json.length;i++){
+        init1(i);
+    }
+    
+    Name={};
 }
-// messege();
-function init1() {
+function init1(tn) {
     var margin = [20, 120, 20, 120],
         width = document.getElementById("tree").offsetWidth,
         height = document.getElementById("tree").offsetHeight;
-
+    //设置树的属性
     var i = 0,
         duration = 750,
         root;
@@ -167,7 +171,7 @@ function init1() {
         .attr("transform", "translate(" + margin[3] + "," + margin[0] + ")");
 
 
-    root = json[0];
+    root = json[tn];
     root.x0 = height / 2;
     root.y0 = 0;
 
@@ -212,14 +216,19 @@ function init1() {
             .attr("transform", function(d) {
                 return "translate(" + source.y0 + "," + source.x0 + ")";
             })
+            .attr("title","123")
             .on("click", click);
+        
+        
 
+        //节点图形    
         nodeEnter.append("circle")
             .attr("r", 1e-6)
             .style("fill", function(d) {
                 return d._children ? "lightsteelblue" : "#fff";
             });
 
+        //标签    
         nodeEnter.append("text")
             .attr("x", function(d) {
                 return d.children || d._children ? -10 : 10;
