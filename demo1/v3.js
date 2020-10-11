@@ -59,23 +59,24 @@ var shuru = "导师：张三\
     \n2017级本科生：刘六、琪七、司四\
     \n\n刘六：JAVA、数学建模\
     \n\n李二：字节跳动、京东云";
-function Trim(str)
-    { 
-     return str.replace(/(^\s*)|(\s*$)/g, ""); 
-   }
+
+function Trim(str) {
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
 function messege() {
     var mdata = document.getElementById("rk").value;
     // var mdata=shuru;
-    var  n = document.getElementById( 'tree' ).childNodes.length;   
-    for  (  var  i = n-1; i >= 0; i--) {   
-        document.getElementById( 'tree' ).removeChild(   
-        document.getElementById( 'tree' ).childNodes[i]);   
-    }  
-    var  n = document.getElementById( 'tree' ).childNodes.length;   
-    for  (  var  i = 0; i < n; i++) {   
-        document.getElementById( 'tree' ).removeChild(   
-        document.getElementById( 'tree' ).childNodes[i]);   
-    }  
+    var n = document.getElementById('tree').childNodes.length;
+    for (var i = n - 1; i >= 0; i--) {
+        document.getElementById('tree').removeChild(
+            document.getElementById('tree').childNodes[i]);
+    }
+    var n = document.getElementById('tree').childNodes.length;
+    for (var i = 0; i < n; i++) {
+        document.getElementById('tree').removeChild(
+            document.getElementById('tree').childNodes[i]);
+    }
     var trees = mdata.split("\n\n\n"); //分割树
     var position = '';
     var name = '';
@@ -135,7 +136,7 @@ function messege() {
                     "skill": ""
                 };
                 for (var k1 = 0; k1 < name1.length; k1++) { //学生
-                    name1[k1]=Trim(name1[k1]);
+                    name1[k1] = Trim(name1[k1]);
                     var node2 = {
                         "name": name1[k1],
                         "children": [],
@@ -152,14 +153,17 @@ function messege() {
             }
         }
     }
-    for(var i=0;i<json.length;i++){   //生成多颗树
+    var json_str = JSON.stringify(json[0]);
+    console.log(json_str);
+    for (var i = 0; i < json.length; i++) { //生成多颗树
         init1(i);
     }
-    
-    Name={};   //防止干扰下一次提交
-    json=[];
+
+    Name = {}; //防止干扰下一次提交
+    json = [];
 }
-var body1=document.getElementsByTagName("body")[0];
+var body1 = document.getElementsByTagName("body")[0];
+
 function init1(tn) {
     var margin = [20, 120, 20, 120],
         width = document.getElementById("tree").offsetWidth,
@@ -232,20 +236,22 @@ function init1(tn) {
             .attr("transform", function(d) {
                 return "translate(" + source.y0 + "," + source.x0 + ")";
             })
-            .attr("title",function(d){
-                if(d.skill.length==0){
+        
+            .attr("title", function(d) {
+                if (d.skill.length == 0) {
                     return "对不起，此人没有添加详细信息";
-                }
+                } 
                 else return d.skill;
             })
-            .on("mouseover",function(d) { //鼠标移上事件
+            .on("mouseover", function(d) { //鼠标移上事件
                 // this.append('<div id="tooltip">' + '123' + "</div>"); //创建提示框,添加到页面中
-                var div = document.createElement("div"); 
-                div.id="tooltip";
-                div.textContent=this.getAttribute("title");
+                var div = document.createElement("div");
+                div.id = "tooltip";
+                div.textContent = this.getAttribute("title");
                 // this.appendChild(div);
                 body1.appendChild(div);
-                var posX = 0, posY = 0;
+                var posX = 0,
+                    posY = 0;
                 var event = event || window.event;
                 if (event.pageX || event.pageY) {
                     posX = event.pageX;
@@ -256,14 +262,14 @@ function init1(tn) {
                 }
                 // $("#tree").appendChild(div);
                 $("#tooltip").css({
-                    // left: (d.x + 30) + "px",
-                    // top: d.y + "px",
-                    left: (posX + 30) + "px",
-                    top: posY + "px",
-                    opacity: "0.8"
-                }).show(250) //设置提示框的坐标，并显示
+                        // left: (d.x + 30) + "px",
+                        // top: d.y + "px",
+                        left: (posX + 30) + "px",
+                        top: posY + "px",
+                        opacity: "0.8"
+                    }).show(250) //设置提示框的坐标，并显示
             })
-            .on("mouseout",function(d){
+            .on("mouseout", function(d) {
                 $("#tooltip").remove();
             })
             // .attr("onmouseover",function(d){
@@ -273,8 +279,8 @@ function init1(tn) {
             //     this.append(p);
             // })
             .on("click", click);
-        
-        
+
+
 
         //节点图形    
         nodeEnter.append("circle")
@@ -300,8 +306,8 @@ function init1(tn) {
             // })
             // .attr("onmouseover",function(d){
 
-            // })
-            .text(function(d) {
+        // })
+        .text(function(d) {
                 return d.name;
             })
             .style("fill-opacity", 1e-6);
@@ -394,5 +400,5 @@ function init1(tn) {
         }
         update(d);
     }
-    
+
 }
