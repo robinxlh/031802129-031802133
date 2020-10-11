@@ -191,15 +191,15 @@ function init1(tn) {
     root.x0 = height / 2;
     root.y0 = 0;
 
-    function collapse(d) {
-        if (d.children) {
-            d._children = d.children;
-            d._children.forEach(collapse);
-            d.children = null;
-        }
-    }
+    // function collapse(d) {          //树初始化折叠，还是别开了
+    //     if (d.children) {
+    //         d._children = d.children;
+    //         d._children.forEach(collapse);
+    //         d.children = null;
+    //     }
+    // }
 
-    root.children.forEach(collapse);
+    // root.children.forEach(collapse);
     update(root);
 
     function zoomed() {
@@ -278,7 +278,7 @@ function init1(tn) {
 
         //节点图形    
         nodeEnter.append("circle")
-            .attr("r", 1e-6)
+            .attr("r", 1e-6)    //da
             .style("fill", function(d) {
                 return d._children ? "lightsteelblue" : "#fff";
             });
@@ -313,9 +313,17 @@ function init1(tn) {
             });
 
         nodeUpdate.select("circle")
-            .attr("r", 4.5)
+            .attr("r", 9.5)
+            // .attr("r", 1e-6)
             .style("fill", function(d) {
-                return d._children ? "lightsteelblue" : "#fff";
+                // if(d._children)return "ligtsteelblue";
+                // else {
+                //     // if(d.skill.length)return "#cda";
+                //     // else return "#fff";
+                //     return "#fff";
+                // }
+                // return d._children ? "lightsteelblue" : "#fff";
+                return d._children ? "#5df" :d.skill.length?"#fff":"##00FF004";
             });
 
         nodeUpdate.select("text")

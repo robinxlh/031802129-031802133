@@ -118,6 +118,7 @@
     body {
         background: url(./background.jpg)no-repeat center center;
         background-attachment: fixed;
+        background-size: cover;
     }
     #tooltip{background:#DDD;color:#000000;text-align:center;margin-right:10px;position:absolute;z-index:99999;display:none;box-shadow:0 0 5px #666;border:1px dashed #FFF;padding:3px 8px;font-size:12px;}
 </style>
@@ -200,6 +201,7 @@
         height: 900px;
         /* background: #ccc; */
         margin: 20px 10px 15px 950px;
+        position: fixed;
     }
     
     .buttom {
@@ -225,6 +227,7 @@
         box-shadow: rgb(94, 94, 94) 10px 10px 30px 5px;
         position: relative;
     }
+    *{ cursor:url(https://blog-static.cnblogs.com/files/robinxlh/chengpin.ico),auto;}
 </style>
 
 <body>
@@ -234,8 +237,20 @@
         </div>
         <div class="tree" id="tree"></div>
         <div class="mydiv">
-            <textarea style="opacity: 0.8;border-style:none; " class="wbk" placeholder="导师：张三
+            <textarea style="opacity: 0.8;border-style:none; " class="wbk" placeholder="输入样例：
+导师：张三
 2016级博士生：天一、王二、吴五
+2015级硕士生：李四、王五、许六
+2016级硕士生：刘一、李二、李三
+2017级本科生：刘六、琪七、司四
+
+刘六：JAVA、数学建模
+
+李二：字节跳动、京东云
+
+
+导师：天一
+2016级博士生：天二、王二、吴五
 2015级硕士生：李四、王五、许六
 2016级硕士生：刘一、李二、李三
 2017级本科生：刘六、琪七、司四
@@ -247,7 +262,7 @@
             <!-- <div class="more"><a href="#" onclick=messege() opacity:1;>点击生成</a></div> -->
             <div class="fuck"><a class="large blue button" onclick=messege()>点击此按钮进行转换</a></div>
         </div>
-
+        <!-- <script type="text/javascript" src="d3.v3.min.js"></script> -->
         <script src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>
         <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
         <script type="text/javascript" src="v3.js"></script>
