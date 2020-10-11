@@ -149,13 +149,16 @@ function messege(shuru) {
             }
         }
     }
+
+    var json_str = JSON.stringify(json[0]);
+
     for (var i = 0; i < json.length; i++) { //生成多颗树
         // init1(i);
-        return shuru;
     }
 
     Name = {}; //防止干扰下一次提交
     json = [];
+    return json_str;
 }
 module.exports = messege;
 // var body1 = document.getElementsByTagName("body")[0];
