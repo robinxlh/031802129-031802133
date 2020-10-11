@@ -234,7 +234,7 @@ function init1(tn) {
             })
             .attr("title",function(d){
                 if(d.skill.length==0){
-                    return "sorry,void";
+                  return "对不起，此人没有添加详细信息";
                 }
                 else return d.skill;
             })
