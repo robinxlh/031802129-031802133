@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<link rel="stylesheet" href="bower_components/css-ripple-effect/dist/ripple.min.css">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+</html>
+<link href="playground.css" media="all" rel="stylesheet" type="text/css" />
 <title>tree</title>
 <style>
     a {
@@ -14,7 +17,7 @@
         line-height: 50px;
         border: 1px solid #ccc;
         text-align: center;
-        -webkit-backface-visibility: hidden;
+        -webkit-backface-visibility: visible;
         -moz-osx-font-smoothing: grayscale;
         -webkit-transition: border-color 2s, color 4s;
         transition: border-color 0.4s, color 0.4s;
@@ -28,6 +31,7 @@
     .more a {
         display: block;
         color: inherit;
+        opacity: 1;
     }
     
     .more:hover::before {
@@ -72,6 +76,7 @@
         transform: scale3d(0.2, 1, 1);
         -webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
     }
+    /* 这些是显示树的 */
     
     .node {
         cursor: pointer;
@@ -96,6 +101,7 @@
     .tree {
         opacity: 0.8;
         float: left;
+        box-shadow: rgb(94, 94, 94) 10px 10px 30px 5px;
         width: 900px;
         height: 900px;
         position: absolute;
@@ -112,11 +118,69 @@
         background: url(./background.jpg)no-repeat center center;
         background-attachment: fixed;
     }
+    #tooltip{background:#DDD;color:#000000;text-align:center;margin-right:10px;position:absolute;z-index:99999;display:none;box-shadow:0 0 5px #666;border:1px dashed #FFF;padding:3px 8px;font-size:12px;}
 </style>
 <style type="text/css">
+    @-webkit-keyframes bluePulse {
+        from {
+            background-color: #007d9a;
+            -webkit-box-shadow: 0 0 9px #333;
+        }
+        50% {
+            background-color: #2daebf;
+            -webkit-box-shadow: 0 0 18px #2daebf;
+        }
+        to {
+            background-color: #007d9a;
+            -webkit-box-shadow: 0 0 9px #333;
+        }
+    }
+    
+    a.button {
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+    }
+    
+    .blue.button {
+        -webkit-animation-name: bluePulse;
+        -webkit-animation-duration: 4s;
+    }
+    
+    .red.button {
+        -webkit-animation-name: redPulse;
+        -webkit-animation-duration: 1s;
+    }
+    
+    .magenta.button {
+        -webkit-animation-name: magentaPulse;
+        -webkit-animation-duration: 2s;
+    }
+    
+    .orange.button {
+        -webkit-animation-name: orangePulse;
+        -webkit-animation-duration: 3s;
+    }
+    
+    .orangellow.button {
+        -webkit-animation-name: orangellowPulse;
+        -webkit-animation-duration: 5s;
+    }
+    
+    .wall-of-buttons {
+        width: 100%;
+        height: 180px;
+        text-align: center;
+    }
+    
+    .wall-of-buttons a.button {
+        display: inline-block;
+        margin: 0 10px 9px 0;
+    }
+    
     .div {
         margin: 100px;
     }
+    /* 标题 */
     
     .title {
         position: absolute;
@@ -154,72 +218,38 @@
         font-size: 16px;
         cursor: pointer;
     }
-    #tooltip{background:#DDD;color:#000000;text-align:center;margin-right:10px;position:absolute;z-index:99999;display:none;box-shadow:0 0 5px #666;border:1px dashed #FFF;padding:3px 8px;font-size:12px;}
+    
+    .wbk {
+        background-color: #E0E0E0;
+        box-shadow: rgb(94, 94, 94) 10px 10px 30px 5px;
+        position: relative;
+    }
 </style>
 
 <body>
-
     <div class="div">
         <div class="title">
-            <h2>师门树生成软件</h2>
+            <h2>师门树生成器</h2>
         </div>
         <div class="tree" id="tree"></div>
         <div class="mydiv">
-            <textarea style="opacity: 0.5;border-style:none; " rows="40" cols="40" id="rk">
-导师： 张三
-2016 级博士生： 天一、 王二、 吴五
-2015 级硕士生： 李四、 王五、 许六
-2016 级硕士生： 刘一、 李二、 李三
-2017 级本科生： 刘六、 琪七、 司四
+            <textarea style="opacity: 0.8;border-style:none; " class="wbk" placeholder="导师：张三
+2016级博士生：天一、王二、吴五
+2015级硕士生：李四、王五、许六
+2016级硕士生：刘一、李二、李三
+2017级本科生：刘六、琪七、司四
 
-刘六： JAVA、 数学建模
+刘六：JAVA、数学建模
 
-李二： 字节跳动、 京东云
-
-
-导师： 张13
-2016 级博士生： 天一、 王二、 吴五
-2015 级硕士生： 李四、 王五、 许六
-2016 级硕士生： 刘一、 李二、 李三
-2017 级本科生： 刘六、 琪七、 司四
-
-刘六： JAVA、 数学建模
-
-李二： 字节跳动、 京东云</textarea>
+李二：字节跳动、京东云" rows="40" cols="40" id="rk"></textarea>
             <!-- <input onclick=messege() type="button" class="buttom" value="点击生成"> -->
-            <div class="more"><a href="#" onclick=messege()>点击生成</a></div>
+            <!-- <div class="more"><a href="#" onclick=messege() opacity:1;>点击生成</a></div> -->
+            <div class="fuck"><a class="large blue button" onclick=messege()>点击此按钮进行转换</a></div>
         </div>
-    </div>
-    <script src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>
-    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
-    <script type="text/javascript" src="v3.js"></script>
-    <!-- <script type="text/javascript">
-        $(function() {
-        $("text").each(function(b) {//这里是控制标签
-            if (this.title) {
-                var c = this.title; //把title的赋给自定义属性 myTilte ，屏蔽自带提示
-                var a = 30; //设置提示框相对于偏移位置，防止遮挡鼠标
-                $(this).mouseover(function(d) { //鼠标移上事件
-                    this.title = "";
-                    $("g").append('<div id="tooltip">' + c + "</div>"); //创建提示框,添加到页面中
-                    $("#tooltip").css({
-                        left: (d.pageX + a) + "px",
-                        top: d.pageY + "px",
-                        opacity: "0.8"
-                    }).show(250) //设置提示框的坐标，并显示
-                }).mouseout(function() { //鼠标移出事件
-                    this.title = c; //重新设置title
-                    $("#tooltip").remove() //移除弹出框
-                }).mousemove(function(d) { //跟随鼠标移动事件
-                    $("#tooltip").css({
-                        left: (d.pageX + a) + "px",
-                        top: d.pageY + "px"
-                    })
-                })
-            }
-        })
-    });
-    </script> -->
+
+        <script src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>
+        <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
+        <script type="text/javascript" src="v3.js"></script>
 </body>
 
 </html>
