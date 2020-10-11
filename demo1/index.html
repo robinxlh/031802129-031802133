@@ -2,6 +2,77 @@
 <meta charset="utf-8">
 <title>tree</title>
 <style>
+    a {
+        text-decoration: none;
+    }
+    
+    .more {
+        perspective: 200px;
+        width: 280px;
+        height: 50px;
+        line-height: 50px;
+        border: 1px solid #ccc;
+        text-align: center;
+        -webkit-backface-visibility: visible;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-transition: border-color 2s, color 4s;
+        transition: border-color 0.4s, color 0.4s;
+    }
+    
+    .more:hover {
+        color: rgb(181, 192, 197);
+        border-color: #1070cf;
+    }
+    
+    .more a {
+        display: block;
+        color: inherit;
+        opacity: 1;
+    }
+    
+    .more:hover::before {
+        opacity: 1;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    
+    .more::before {
+        -webkit-transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+        transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+    }
+    
+    .more {
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+    }
+    
+    .more:before {
+        content: '';
+        background: rgb(60, 163, 211);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 280px;
+        height: 50px;
+        z-index: -1;
+    }
+    
+    .more:before {
+        content: '';
+        background: rgb(60, 163, 211);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 280px;
+        height: 50px;
+        z-index: -1;
+        opacity: 0;
+        -webkit-transform: scale3d(0.2, 1, 1);
+        transform: scale3d(0.2, 1, 1);
+        -webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
+    }
+    
     .node {
         cursor: pointer;
     }
@@ -39,6 +110,7 @@
     
     body {
         background: url(./background.jpg)no-repeat center center;
+        background-attachment: fixed;
     }
 </style>
 <style type="text/css">
@@ -91,8 +163,17 @@
         </div>
         <div class="tree" id="tree"></div>
         <div class="mydiv">
-            <textarea style="opacity: 0.5;border-style:none; " rows="40" cols="40" id="rk"></textarea>
-            <input onclick=messege() type="button" class="buttom" value="点击生成">
+            <textarea style="opacity: 0.5;border-style:none; " placeholder="导师：张三
+2016级博士生：天一、王二、吴五
+2015级硕士生：李四、王五、许六
+2016级硕士生：刘一、李二、李三
+2017级本科生：刘六、琪七、司四
+
+刘六：JAVA、数学建模
+
+李二：字节跳动、京东云" rows="40" cols="40" id="rk"></textarea>
+            <!-- <input onclick=messege() type="button" class="buttom" value="点击生成"> -->
+            <div class="more"><a href="#" onclick=messege() opacity:1;>点击生成</a></div>
         </div>
     </div>
 
