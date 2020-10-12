@@ -133,7 +133,7 @@ function messege() {
                     "name": position,
                     "children": [],
                     "tree": 0,
-                    "skill": ""
+                    "skill": "别瞄了，这不是人"
                 };
                 for (var k1 = 0; k1 < name1.length; k1++) { //学生
                     name1[k1]=Trim(name1[k1]);
@@ -324,7 +324,7 @@ function init1(tn) {
                 //     return "#fff";
                 // }
                 // return d._children ? "lightsteelblue" : "#fff";
-                return d._children ? "#5df" :d.skill.length?"#fff":"##00FF004";
+                return d._children ? "#5df" :d.skill.length?d.skill=="别瞄了，这不是人"?"#93a":"#fff":"##00FF004";
             });
 
         nodeUpdate.select("text")
