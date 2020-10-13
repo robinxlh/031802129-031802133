@@ -120,7 +120,20 @@
         background-attachment: fixed;
         background-size: cover;
     }
-    #tooltip{background:#DDD;color:#000000;text-align:center;margin-right:10px;position:absolute;z-index:99999;display:none;box-shadow:0 0 5px #666;border:1px dashed #FFF;padding:3px 8px;font-size:12px;}
+    
+    #tooltip {
+        background: #DDD;
+        color: #000000;
+        text-align: center;
+        margin-right: 10px;
+        position: absolute;
+        z-index: 99999;
+        display: none;
+        box-shadow: 0 0 5px #666;
+        border: 1px dashed #FFF;
+        padding: 3px 8px;
+        font-size: 12px;
+    }
 </style>
 <style type="text/css">
     @-webkit-keyframes bluePulse {
@@ -227,7 +240,10 @@
         box-shadow: rgb(94, 94, 94) 10px 10px 30px 5px;
         position: relative;
     }
-    *{ cursor:url(https://blog-static.cnblogs.com/files/robinxlh/chengpin.ico),auto;}
+    
+    * {
+        cursor: url(https://blog-static.cnblogs.com/files/robinxlh/chengpin.ico), auto;
+    }
 </style>
 
 <body>
@@ -235,9 +251,31 @@
         <div class="title">
             <h2>师门树生成器</h2>
         </div>
-        <div class="tree" id="tree"></div>
-        <div class="mydiv">
-            <textarea style="opacity: 0.8;border-style:none; " class="wbk" placeholder="输入样例：
+        <div class="tree" id="tree">
+            <div>
+                
+                    <h1>欢迎使用关系树系统！</h1>
+                    <h2>使用说明</h2>
+                    <ul>
+                        <li>第一行输入导师，其后每个回车行输入‘’级别：学生‘’(注意冒号是中文的冒号)，输入每行人物信息时，与上面信息相隔一个空行。</li>
+                        <li>当输入第二个以上关系时，导师行与之前的信息相隔两个空行，其余同上类推。</li>
+
+                    </ul>
+                    <h2>输出操作</h2>
+                    <ul>
+                        <li>节点蓝色说明节点可点击延展，节点之后还有子树，节点黑色说明节点没有添加详细信息，节点白色说明节点有添加详细信息，可查看</li>
+                        <li>鼠标点击节点可以收缩其子节点</li>
+                        <li>同一导师名下且同年级的学生请写在同一行里。不同行的数据不会自动整合。</li>
+                        <li>鼠标移动到节点上即可查看添加的详细信息</li>
+                        <li>鼠标对树点击长按可以对树拖拽移动</li>
+                        <li>鼠标对树滑动滚轮可以对树进行放大缩小</li>
+                        <li>鼠标必须在输出树的框外才能对网页上下滑动(注意冒号是中文的冒号)，输入每行人物信息时，与上面信息相隔一个空行。</li>
+
+                
+            </div>
+        </div>
+            <div class="mydiv">
+                <textarea style="opacity: 0.8;border-style:none; " class="wbk" placeholder="输入样例：
 导师：张三
 2016级博士生：天一、王二、吴五
 2015级硕士生：李四、王五、许六
@@ -258,14 +296,14 @@
 刘六：JAVA、数学建模
 
 李二：字节跳动、京东云" rows="40" cols="40" id="rk"></textarea>
-            <!-- <input onclick=messege() type="button" class="buttom" value="点击生成"> -->
-            <!-- <div class="more"><a href="#" onclick=messege() opacity:1;>点击生成</a></div> -->
-            <div class="fuck"><a class="large blue button" onclick=messege()>点击此按钮进行转换</a></div>
-        </div>
-        <!-- <script type="text/javascript" src="d3.v3.min.js"></script> -->
-        <script src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>
-        <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
-        <script type="text/javascript" src="v7.js"></script>
+                <!-- <input onclick=messege() type="button" class="buttom" value="点击生成"> -->
+                <!-- <div class="more"><a href="#" onclick=messege() opacity:1;>点击生成</a></div> -->
+                <div class="fuck"><a class="large blue button" onclick=messege()>点击此按钮进行转换</a></div>
+            </div>
+            <!-- <script type="text/javascript" src="d3.v3.min.js"></script> -->
+            <script src="http://apps.bdimg.com/libs/d3/3.4.8/d3.min.js"></script>
+            <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.12.2/jquery.min.js"></script>
+            <script type="text/javascript" src="v7.js"></script>
 </body>
 
 </html>
